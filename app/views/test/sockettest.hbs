@@ -1,0 +1,14 @@
+<script type="text/javascript">
+  var config = {};
+  config.address = '{{address}}';
+  config.port = '{{port}}';
+  var socket = io.connect(config.address + ':' + config.port);
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+  socket.emit('joined', {message: 'hey from the browser!'});
+  socket.on('joined', function(data) {
+    console.log('data! ', data);
+  });
+</script>
