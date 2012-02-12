@@ -8,6 +8,11 @@ module.exports = function(app, express, templateEngine) {
       pretty: 'true'
     });
     app.set('views', ROOT + '/views');
+    app.set('port', 3666);
+    console.log('STATIC DIR ' + ROOT + '/static');
+    app.use(express.static(ROOT + '/static'));
+    app.set('address', 'localhost');
+    
     //app.use('app.router');
   });
 

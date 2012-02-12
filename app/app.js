@@ -10,5 +10,10 @@ require(ROOT + '/config.js')(app, express, templateEngine);
 
 require(ROOT + '/routes.js')(app);
 
-app.listen(3666);
+if (!module.parent) {
+  app.listen(app.settings.port);
+  console.log("Server listening on port %d", app.settings.port);
+}
 
+var io = require('socket.io').listen(app);
+require('./test/sockettest.js').start(io);
